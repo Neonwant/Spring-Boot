@@ -1,13 +1,18 @@
 package ua.springboot.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.springboot.model.StackoverflowWebsite;
+import ua.springboot.persistence.StackoverflowWebsiteRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class StackoverflowService {
+    @Autowired
+    private StackoverflowWebsiteRepository repository;
+
     private static List<StackoverflowWebsite> items = new ArrayList<>();
     static {
         items.add(new StackoverflowWebsite("stackoverflow", "http://stackoverflow.com", "http://www.iconsdb.com/icons/download/orange/stackoverflow-6-64.ico", "Stack Overflow", "for programmers"));
@@ -15,6 +20,6 @@ public class StackoverflowService {
     }
 
     public List<StackoverflowWebsite> findAll() {
-        return items;
+        return repository.findAll();
     }
 }
