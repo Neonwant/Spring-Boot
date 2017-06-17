@@ -10,7 +10,11 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+<<<<<<< HEAD
       <module name="springboot" target="1.5" />
+=======
+      <module name="springboot" target="1.8" />
+>>>>>>> develop
     </bytecodeTargetLevel>
   </component>
 </project>
