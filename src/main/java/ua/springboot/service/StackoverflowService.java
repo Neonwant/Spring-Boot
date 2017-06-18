@@ -23,6 +23,26 @@ public class StackoverflowService {
     @Autowired
     private StackExchangeClient stackExchangeClient;
 
+    public List<StackoverflowWebsite> findAll() {
+        return stackExchangeClient.getSites().stream()
+                .map(this::toStackoverflowWebsite)
+                .filter(this::ignoreMeta)
+                .collect(collectingAndThen(toList(), ImmutableList::copyOf));
+    }
+
+    private boolean ignoreMeta(@NonNull StackoverflowWebsite stackoverflowWebsite) {
+        return !stackoverflowWebsite.getId().startsWith("meta.");
+    }
+
+    private StackoverflowWebsite toStackoverflowWebsite(@NonNull SiteDto input) {
+        return new StackoverflowWebsite(
+                input.getSite_url().substring("http://".length() + 1, input.getSite_url().length() - ".com".length()),
+                input.getSite_url(),
+                input.getFavicon_url(),
+                input.getName(),
+                input.getAudience());
+    }
+
     /*private static List<StackoverflowWebsite> items = new ArrayList<>();
     static {
         items.add(new StackoverflowWebsite("stackoverflow", "http://stackoverflow.com", "http://www.iconsdb.com/icons/download/orange/stackoverflow-6-64.ico", "Stack Overflow", "for programmers"));
@@ -33,20 +53,7 @@ public class StackoverflowService {
         repository.save(items);
     }*/
 
-    public List<StackoverflowWebsite> findAll() {
-        return stackExchangeClient.getSites().stream()
-                .map(this::toStackoverflowWebsite)
-                .collect(collectingAndThen(toList(), ImmutableList::copyOf));
-    }
 
-    private StackoverflowWebsite toStackoverflowWebsite(@NonNull SiteDto input) {
-        return new StackoverflowWebsite(
-                input.getSite_url(),
-                input.getSite_url(),
-                input.getFavicon_url(),
-                input.getName(),
-                input.getAudience());
-    }
     /*public List<StackoverflowWebsite> findAll() {
         return repository.findAll();
     }*/
