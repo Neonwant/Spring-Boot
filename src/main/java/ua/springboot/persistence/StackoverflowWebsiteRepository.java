@@ -14,6 +14,7 @@ import java.util.List;
 public interface StackoverflowWebsiteRepository extends MongoRepository<StackoverflowWebsite, String> {
     List<StackoverflowWebsite> findAllByWebsite(String website);
 
+    // must be class
 //    @Autowired
 //    private MongoTemplate mongoTemplate;
 //

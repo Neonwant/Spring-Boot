@@ -39,8 +39,6 @@ public class StackOverflowControllerIT {
         mongoTemplate.dropCollection(StackoverflowWebsite.class);
         mongoTemplate.save(new StackoverflowWebsite("website1", "website", "icon", "title", "description"));
         mongoTemplate.save(new StackoverflowWebsite("website2", "website", "icon", "title", "description"));
-
-
     }
 
     @Test
