@@ -42,7 +42,7 @@ public class StackoverflowService {
                 input.getName(),
                 input.getAudience());
     }
-
+    // for initial database
     /*private static List<StackoverflowWebsite> items = new ArrayList<>();
     static {
         items.add(new StackoverflowWebsite("stackoverflow", "http://stackoverflow.com", "http://www.iconsdb.com/icons/download/orange/stackoverflow-6-64.ico", "Stack Overflow", "for programmers"));
