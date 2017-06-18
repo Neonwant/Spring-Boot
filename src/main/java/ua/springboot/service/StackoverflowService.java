@@ -16,10 +16,10 @@ public class StackoverflowService {
     private StackoverflowWebsiteRepository repository;
 
     private static List<StackoverflowWebsite> items = new ArrayList<>();
-    static {
-        items.add(new StackoverflowWebsite("stackoverflow", "http://stackoverflow.com", "http://www.iconsdb.com/icons/download/orange/stackoverflow-6-64.ico", "Stack Overflow", "for programmers"));
-        items.add(new StackoverflowWebsite("superuser", "http://superuser.com", "http://www.iconsdb.com/icons/download/color/CFFF30/linkedin-3-64.ico", "Super User", "for power user"));
-    }
+//    static {
+//        items.add(new StackoverflowWebsite("stackoverflow", "http://stackoverflow.com", "http://www.iconsdb.com/icons/download/orange/stackoverflow-6-64.ico", "Stack Overflow", "for programmers"));
+//        items.add(new StackoverflowWebsite("superuser", "http://superuser.com", "http://www.iconsdb.com/icons/download/color/CFFF30/linkedin-3-64.ico", "Super User", "for power user"));
+//    }
 
 //    @PostConstruct
 //    public void init() {
