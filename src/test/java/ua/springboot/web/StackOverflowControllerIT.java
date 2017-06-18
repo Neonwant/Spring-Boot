@@ -1,12 +1,15 @@
 package ua.springboot.web;
 
 import com.google.common.collect.ImmutableList;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -28,8 +31,22 @@ import static org.junit.Assert.*;
 public class StackOverflowControllerIT {
     RestTemplate restTemplate = new TestRestTemplate();
 
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
+    @Before
+    public void before() {
+        mongoTemplate.dropCollection(StackoverflowWebsite.class);
+        mongoTemplate.save(new StackoverflowWebsite("website1", "website", "icon", "title", "description"));
+        mongoTemplate.save(new StackoverflowWebsite("website2", "website", "icon", "title", "description"));
+
+
+    }
+
     @Test
     public void testGetListOfProviders() throws Exception {
+
+
         ResponseEntity<List<StackoverflowWebsite>> responseEntity =
                 restTemplate.exchange("http://localhost:8090/api/stackoverflow", HttpMethod.GET, null,
                     new ParameterizedTypeReference<List<StackoverflowWebsite>>() {
