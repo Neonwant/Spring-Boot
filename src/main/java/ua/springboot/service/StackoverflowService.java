@@ -1,6 +1,7 @@
 package ua.springboot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import ua.springboot.model.StackoverflowWebsite;
 import ua.springboot.persistence.StackoverflowWebsiteRepository;
@@ -20,10 +21,10 @@ public class StackoverflowService {
         items.add(new StackoverflowWebsite("superuser", "http://superuser.com", "http://www.iconsdb.com/icons/download/color/CFFF30/linkedin-3-64.ico", "Super User", "for power user"));
     }
 
-    @PostConstruct
-    public void init() {
-        repository.save(items);
-    }
+//    @PostConstruct
+//    public void init() {
+//        repository.save(items);
+//    }
 
     public List<StackoverflowWebsite> findAll() {
         return repository.findAll();
